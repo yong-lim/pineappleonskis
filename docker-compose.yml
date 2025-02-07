@@ -1,0 +1,12 @@
+# no version needed since 2020
+services:
+  jekyll:
+    image: bretfisher/jekyll-serve
+    container_name: pineappleonskis
+    working_dir: /srv
+    volumes:
+      - .:/srv
+    ports:
+      - '5752:5752'
+      - '35752:35752'
+    command: bundle exec jekyll s --trace --force_polling -H 0.0.0.0 -P 5752 -l --livereload-port 35752
