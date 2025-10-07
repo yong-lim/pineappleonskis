@@ -3,10 +3,17 @@ services:
   jekyll:
     image: bretfisher/jekyll-serve
     container_name: pineappleonskis
-    working_dir: /srv
+    working_dir: /srv-jekyll
     volumes:
-      - .:/srv
+      - .:/srv-jekyll
+    expose: '5752'
     ports:
       - '5752:5752'
       - '35752:35752'
-    command: bundle exec jekyll s --trace --force_polling -H 0.0.0.0 -P 5752 -l --livereload-port 35752
+    command: |
+      bundle exec jekyll serve
+      --trace --force_polling
+      --host 0.0.0.0
+      --port 5752
+      --livereload
+      --livereload-port 35752
